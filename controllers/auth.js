@@ -59,22 +59,20 @@ export const login = (req, res) => {
     const { password, ...others } = data[0];
 
     res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-      })
+      .cookie("accessToken", token, { domain: '.epusocial.online' })
       .status(200)
       .json({
         code: 200,
         msg: "success",
-        data: {...others, token: token}
+        data: { ...others, token: token }
       });
   });
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("accessToken",{
-    secure:true,
-    sameSite:"none"
+  res.clearCookie("accessToken", {
+    secure: true,
+    sameSite: "none"
   }).status(200).json({
     code: 200,
     msg: "User has been logged out.",
