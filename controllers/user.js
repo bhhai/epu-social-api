@@ -11,6 +11,15 @@ export const getUser = (req, res) => {
     return res.json(info);
   });
 };
+export const search = (req, res) => {
+  const name = req.body.name;
+  const q = `SELECT * FROM users WHERE name like '%${name}%'`;
+
+  db.query(q, null, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.json(data);
+  });
+};
 export const getUserByUsername = (req, res) => {
   const userId = req.params.userId;
   const q = "SELECT * FROM users WHERE username=?";
