@@ -10,7 +10,7 @@ export const follow = (req, res, next) => {
         res.status(200).json({
             data: fields
         })
-    } catch(err) {
+    } catch (err) {
         res.json({
             message: err
         })
@@ -18,14 +18,14 @@ export const follow = (req, res, next) => {
 }
 
 export const getUserFollow = (req, res, next) => {
-   
-        const { idUser } = req.body;
-        const SQL = "SELECT * FROM follow WHERE userId = ?";
-        const [rows, fields] = db.query(SQL, [idUser]);
-        console.log(idUser, idUserFollow)
-        res.status(200).json({
-            data: fields
-        })
-    
+
+    const { idUser } = req.body;
+    const SQL = "SELECT * FROM follow WHERE userId = ?";
+    const [rows, fields] = db.query(SQL, [idUser]);
+    console.log(idUser, idUserFollow)
+    res.status(200).json({
+        data: fields
+    })
+
 }
 
